@@ -96,7 +96,6 @@ public class RestauranteView extends JFrame implements ActionListener{
          
          //JMenuItem
          itemCadastrarUsuario = new JMenuItem(bn.getString("itemCadastrarUsuario"));
-         itemConsultarEditarUsuario = new JMenuItem(bn.getString("itemConsultarEditarUsuario"));
          itemSair = new JMenuItem(bn.getString("itemSair"));         
          
          //Adicionando Menu no JMenuBar
@@ -104,13 +103,11 @@ public class RestauranteView extends JFrame implements ActionListener{
          
          //Adicionando Itens no JMenu        
          menuUsuario.add(itemCadastrarUsuario);
-         menuUsuario.add(itemConsultarEditarUsuario);
          menuUsuario.addSeparator();
          menuUsuario.add(itemSair);            
          
          //Action Listener - dando ações aos botões
  		 itemCadastrarUsuario.addActionListener(this);
- 		 itemConsultarEditarUsuario.addActionListener(this);
  		 itemSair.addActionListener(this);      
          
          icon = new ImageIcon("imageLoginView1.png");
