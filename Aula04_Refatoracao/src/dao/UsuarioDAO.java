@@ -9,26 +9,16 @@ import model.Usuario;
 
 public class UsuarioDAO {
 	public int cadastrar(Usuario usuario){
-		String sqlInsert = "INSERT INTO usuario(idusuario, nome, login, senha, rg, cpf, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sqlInsert = "INSERT INTO usuario(idusuario, nome, login, senha, rg, cpf, tipo) VALUES ((SELECT max(u.idusuario+1) FROM usuario u), ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			stm.setInt(1, usuario.getId());
-			stm.setString(2, usuario.getNome());
-			stm.setString(3, usuario.getLogin());
-			stm.setInt(4, usuario.getSenha());
-			stm.setString(5, usuario.getRg());
-			stm.setString(6, usuario.getCpf());
-			stm.setInt(7, usuario.getTipo());
+			stm.setString(1, usuario.getNome());
+			stm.setString(2, usuario.getLogin());
+			stm.setInt(3, usuario.getSenha());
+			stm.setString(4, usuario.getRg());
+			stm.setString(5, usuario.getCpf());
+			stm.setInt(6, usuario.getTipo());
 			stm.execute();
-			/*String sqlQuery = "SELECT LAST_INSERT_ID()";
-			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery);
-					ResultSet rs = stm2.executeQuery();) {
-				if (rs.next()) {
-					usuario.setId(rs.getInt(1));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +58,7 @@ public class UsuarioDAO {
 	public Usuario carregar(int id) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
-		String sqlSelect = "SELECT idusuario, nome, login, senha, rg, cpf, tipo FROM usuario WHERE usuario.id = ?";
+		String sqlSelect = "SELECT idusuario, nome, login, senha, rg, cpf, tipo FROM usuario WHERE usuario.idusuario = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {

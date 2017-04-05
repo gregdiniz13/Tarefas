@@ -32,9 +32,9 @@ public class UsuarioView extends JFrame implements ActionListener{
 	protected JCheckBox		checkConsiderar;	
 	protected JComboBox		comboTipoUsuario;	
 	protected JScrollPane	scroll;	
-	protected JLabel		lblIdUsuario, lblNomeUsuario, lblLoginUsuario, lblSenhaUsuario, 
+	protected JLabel		lblNomeUsuario, lblLoginUsuario, lblSenhaUsuario, 
 							lblRgUsuario, lblCpfUsuario, lblTipoUsuario;	
-	protected JTextField	txtIdUsuario, txtNomeUsuario, txtLoginUsuario,
+	protected JTextField	txtNomeUsuario, txtLoginUsuario,
 							txtRgUsuario, txtCpfUsuario;	
 	protected JPasswordField txtSenhaUsuario;
 	protected JButton		btnCadastrar, btnConsultar, btnAlterar, btnExcluir, btnOk;	
@@ -50,7 +50,6 @@ public class UsuarioView extends JFrame implements ActionListener{
 		bn = bundle; 
 		
 		lblTipoUsuario = new JLabel(bn.getString("lblTipoUsuario"));
-		lblIdUsuario = new JLabel(bn.getString("lblIdUsuario"));
 		lblNomeUsuario = new JLabel(bn.getString("lblNomeUsuario"));
 		lblLoginUsuario = new JLabel(bn.getString("lblLoginUsuario"));
 		lblSenhaUsuario = new JLabel(bn.getString("lblSenhaUsuario"));
@@ -74,7 +73,6 @@ public class UsuarioView extends JFrame implements ActionListener{
  		
    		btnCadastrar = new JButton(bn.getString("btnCadastrar"));
    		
-   		txtIdUsuario = new JTextField(25); 
    		txtNomeUsuario = new JTextField(25); 
    		txtLoginUsuario = new JTextField(25);
    		txtSenhaUsuario = new JPasswordField(25);
@@ -84,8 +82,6 @@ public class UsuarioView extends JFrame implements ActionListener{
    		frame = new JFrame(bn.getString("tituloCadastrarUsuario"));
    		frame.add(panel);   
    		
-   		panel.add(lblIdUsuario);
-   		panel.add(txtIdUsuario);
    		panel.add(lblNomeUsuario);
    		panel.add(txtNomeUsuario);
    		panel.add(lblRgUsuario);
@@ -124,14 +120,6 @@ public class UsuarioView extends JFrame implements ActionListener{
         		cripto  = new Criptografia();
         		
         		try {
-        			usuario.setId(Integer.parseInt(txtIdUsuario.getText()));
-        		}
-        		catch(NumberFormatException e) {
-	        		JOptionPane.showMessageDialog(null, bn.getString("mensagemIdInvalido"));	  
-	        		return;
-	        	}
-        		
-        		try {
         			usuario.setSenha(cripto.cifrar(Integer.parseInt(txtSenhaUsuario.getText())) );
         		}
         		catch(NumberFormatException e) {
@@ -144,8 +132,7 @@ public class UsuarioView extends JFrame implements ActionListener{
         		usuario.setRg	(txtRgUsuario.getText());
         		usuario.setCpf	(txtCpfUsuario.getText());
         		usuario.setTipo	(comboTipoUsuario.getSelectedIndex());
-        		id = usuarioService.cadastrar(usuario);
-        		  	  		        		
+        		id = usuarioService.cadastrar(usuario); 		        		
         	}        	
         }        
         
