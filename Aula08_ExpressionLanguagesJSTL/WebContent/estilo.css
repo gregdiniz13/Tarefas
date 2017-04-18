@@ -1,0 +1,66 @@
+body {
+      margin:30px;
+      background-image: url("images.jpg");
+      position: relative;
+
+     }
+
+
+
+div#site {width: 950px;
+
+          background: #330000;
+
+          margin: auto;
+
+          padding: 3px;
+
+         }
+
+
+
+div#topo {width: 100%;
+ 
+         height: 150px;
+
+          background-image: url("fundo4.jpg");
+
+          margin-bottom: 5px;
+         }
+
+
+
+div#menu {height: 30px;
+
+	  font-size: 20px;
+
+          width: 100%;
+
+          background:	#D2B48C;
+
+          margin-bottom: 5px
+;
+         }
+
+
+
+div#corpo {height: 700px;
+
+	  font-family: Arial, Tahoma, sans-serif;
+	  width: 100%;
+
+          background: #FFFFE0;
+
+	    background: rgba(255,255,255,0.8); /* fundo branco com um pouco de transparência */
+          margin-bottom: 5px;
+          }
+
+
+
+div#rodape {height: 20px;
+
+            width: 100%;
+
+           font-family: Arial, Tahoma, sans-serif;
+           background: #330000;
+	}
